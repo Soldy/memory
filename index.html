@@ -135,6 +135,10 @@
                var cser ={ a:0,b:0,ida:"0",idb:"0"};
 //               for (i=1;2>i;i++) {
 //               	  for(ic=1;10>ic;ic){
+
+
+// ?????????? WTF ???????
+
                         cser.a=Math.floor((Math.random()*9)+1);
                         cser.ida=memory.arra[1];
                         cser.idb=memory.arra[cser.a];
@@ -225,6 +229,8 @@
                         cser.idb=memory.arra[cser.a];
                         memory.arra[18]=cser.idb;
                         memory.arra[cser.a]=cser.ida;
+                        
+//     ?????????????????? WTF ???????????????????
 //                    }
 //               }
            }
@@ -278,130 +284,78 @@
 
 
 //fit
-
-
-
-
-            var jsonbfit = {
-            	 originalw : 1800,
-            	 originalh : 900,
-            	 flip : {
-            	 	  onoff : 0,
-            	     verticalw : 1080,
-            	     verticalh : 1920,
-            	     verticalhtml : "<div class='desktopvertical'></div>",
-            	     horizontalw : 1920,
-            	     horizontalh : 1080,
-            	     horizontalhtml : "<div class='desktophorizontal'></div>",
-            	 },           	 
-            	 interval : "",
-            	 marginleft : 0,
-            	 margintop : 0,
-            	 currentw : 0,
-            	 currenth : 0,
-            	 aranyw : 0,
-            	 aranyh : 0,
-            	 oldw : 0,
-            	 oldh : 0,
-            	 scale : 1,
-            	 rescale : 0,
-                	
-            }  
-
-            document.onkeydown = function(e) {
-                var k = e.keyCode;
-                if ((k >= 37 && k <= 40) || (k >= 33 && k <= 34)) {
-                    return false;
-                }
-            }
-        
-            function jsonbfitflip() {
-                if (jsonbfit.currentw > jsonbfit.currenth ){
-                    document.getElementById('desktopbigclass').innerHTML=jsonbfit.flip.horizontalhtml;
-                    jsonbfit.originalw = jsonbfit.flip.horizontalw;
-                    jsonbfit.originalh = jsonbfit.flip.horizontalh;
-                    document.getElementById('desktopbigclass').style.width = jsonbfit.originalw.toString()+"px";
-                    document.getElementById('desktopbigclass').style.height = jsonbfit.originalh.toString()+"px"; 
-                }	else {
-                    document.getElementById('desktopbigclass').innerHTML=jsonbfit.flip.verticalhtml;
-                    jsonbfit.originalw = jsonbfit.flip.verticalw;
-                    jsonbfit.originalh = jsonbfit.flip.verticalh;
-                    document.getElementById('desktopbigclass').style.width = jsonbfit.originalw.toString()+"px";
-                    document.getElementById('desktopbigclass').style.height = jsonbfit.originalh.toString()+"px"; 
-                }
-            }        
-        
-            function jsonbfitscale(){
-                jsonbfit.aranyw=jsonbfit.currentw/jsonbfit.originalw;
-                jsonbfit.aranyh=jsonbfit.currenth/jsonbfit.originalh;
-                if(jsonbfit.aranyw > jsonbfit.aranyh){
-                    if(1>jsonbfit.aranyh){
-                    	   var testmargoa = jsonbfit.currentw-(jsonbfit.aranyh*jsonbfit.originalw);
-                    	   var testmargob = (testmargoa-2)/2;
-                    	   var testmargotext = testmargob.toString()+"px";
-                        var fitscalebale = "scale("+jsonbfit.aranyh.toString()+")";
-                        var testmargoleft = testmargotext;
-                        var testmargotop = "0";
-                        jsonbfit.margintop = 0;
-                        jsonbfit.marginleft = testmargob;
-                        jsonbfit.scale = jsonbfit.aranyh;
+oson.fit = {
+    vars:{
+        version : "0.001",
+        interval : "",
+        marginleft : 0,
+        margintop : 0,
+        currentw : 0,
+        currenth : 0,
+        aranyw : 0,
+        aranyh : 0,
+        resultw : 1920,
+        resulth : 1080,
+        oldw : 0,
+        oldh : 0,
+        scale : 1,
+        rescale : 0,
+        fitedid : "desktopbigclass",
+     },
+     scale:function(){
+         oson.fit.vars.aranyw=oson.fit.vars.currentw/oson.fit.vars.resultw;
+         oson.fit.vars.aranyh=oson.fit.vars.currenth/oson.fit.vars.resulth;
+         if(oson.fit.vars.aranyw > oson.fit.vars.aranyh){
+              if(1>oson.fit.vars.aranyh){
+                  var testmargoa = oson.fit.vars.currentw-(oson.fit.vars.aranyh*oson.fit.vars.resultw);
+                    	   oson.fit.vars.marginleft = (testmargoa-2)/2;
+                    	   var testmargotext = testmargoa.toString()+"px";
+                        var fitscalebale = "scale("+oson.fit.vars.aranyh.toString()+")";
+                        oson.fit.vars.margintop = 0;
+                        oson.fit.vars.scale = oson.fit.vars.aranyh;
                     }
                 }else{
-                    if(1>jsonbfit.aranyw){
-                    	   var testmargoa = jsonbfit.currenth-(jsonbfit.aranyw*jsonbfit.originalh);
-                    	   var testmargob = (testmargoa-2)/2;
-                    	   var testmargotext = testmargob.toString()+"px";
-                        var fitscalebale = "scale("+jsonbfit.aranyw.toString()+")";
+                    if(1>oson.fit.vars.aranyw){
+                    	   var testmargoa = oson.fit.vars.currenth-(oson.fit.vars.aranyw*oson.fit.vars.resulth);
+                    	   oson.fit.vars.margintop = (testmargoa-2)/2;
+                        var fitscalebale = "scale("+oson.fit.vars.aranyw.toString()+")";
                         var testmargoleft = "0";
-                        var testmargotop = testmargotext;
-                        jsonbfit.margintop = testmargob;
-                        jsonbfit.marginleft = 0;
-                        jsonbfit.scale = jsonbfit.aranyw;
+                        oson.fit.vars.marginleft = 0;
+                        oson.fit.vars.scale = oson.fit.vars.aranyw;
                     }
                 }
-                document.getElementById('desktopbigclass').style.webkitTransform=fitscalebale;
-                document.getElementById('desktopbigclass').style.webkitTransformOrigin="0 0";
-                document.getElementById('desktopbigclass').style.transform=fitscalebale;
-                document.getElementById('desktopbigclass').style.transformOrigin="0 0";
-                document.getElementById('desktopbigclass').style.marginLeft=testmargoleft;
-                document.getElementById('desktopbigclass').style.marginTop=testmargotop;
-
-            }
-            
-            function jsonbfitinterval(){
+                var el = document.getElementById(oson.fit.vars.fitedid);
+                el.style.webkitTransform=fitscalebale;
+                el.style.webkitTransformOrigin="0 0";
+                el.style.transform=fitscalebale;
+                el.style.transformOrigin="0 0";
+                el.style.marginLeft=oson.fit.vars.marginleft+"px";
+                el.style.marginTop=oson.fit.vars.margintop+"px";
+    },
+    interval:function(){
                 if (document.body && document.body.offsetWidth) {
-                    jsonbfit.currentw = document.body.offsetWidth;
-                    jsonbfit.currenth = document.body.offsetHeight;
+                    oson.fit.vars.currentw = document.body.offsetWidth;
+                    oson.fit.vars.currenth = document.body.offsetHeight;
                 }
                 if (document.compatMode=='CSS1Compat' &&
                     document.documentElement &&
                     document.documentElement.offsetWidth ) {
-                    jsonbfit.currentw = document.documentElement.offsetWidth;
-                    jsonbfit.currenth = document.documentElement.offsetHeight;
+                    oson.fit.vars.currentw = document.documentElement.offsetWidth;
+                    oson.fit.vars.currenth = document.documentElement.offsetHeight;
                 }
                 if (window.innerWidth && window.innerHeight) {
-                    jsonbfit.currentw = window.innerWidth;
-                    jsonbfit.currenth = window.innerHeight;
+                    oson.fit.vars.currentw = window.innerWidth;
+                    oson.fit.vars.currenth = window.innerHeight;
                 }
-                if (jsonbfit.flip.onoff == 1) {
-                	  jsonbfitflip();
-                
-                }
-                if(jsonbfit.currentw !=jsonbfit.oldw  || jsonbfit.currenth!=jsonbfit.oldh){
-                    jsonbfitscale();
-                    jsonbfit.oldw = jsonbfit.currentw;
-                    jsonbfit.oldh = jsonbfit.currenth;
-                }
-               
-            }
-            
-            function jsonbfitintervalstart(){
-          //      clearInterval(jsonbdesktopinterval);
-			       jsonbfit.interval = setInterval("jsonbfitinterval()", 1000);
-            }
-            
-            jsonbfitinterval();
-            jsonbfitintervalstart();  
+                if(oson.fit.vars.currentw!=oson.fit.vars.oldw  || oson.fit.vars.currenth!=oson.fit.vars.oldh){
+                    oson.fit.scale();
+                    oson.fit.vars.oldw = oson.fit.vars.currentw;
+                    oson.fit.vars.oldh = oson.fit.vars.currenth;
+                }    
+    }
+}
+oson.fit.interval();
+oson.fit.vars.interval = setInterval("oson.fit.interval()", 1000);
             
         </script>
     </body>
