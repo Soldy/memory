@@ -94,30 +94,33 @@
             if(navigator.userAgent.match(/iPhone/i)){
                 window.scrollTo(0,1);
             } 
+            
+            
            
-            var memory = {
-                 arra : new Array("0", "1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9"),            
-                 click : 0,
-                 clicked : new Array(0,0),
-                 inttime : 0,
-                 intval : "none",
-                 intcards : new Array("0","0"),
-                 
-            }
-           
-           function memorymaketable() {
-           	    var outhtml = ""; 
-	             for (iy=0;3>iy;iy++){
-	                 outhtml += "<div  class='memorycardline'>";
-	                 for (ix=1;7>ix;ix++){
-	                 	    outhtml += "<div  class='memorycardhouse' id='memorycardhouse";
-                         outhtml += ((iy*6)+ix).toString();
-	                 	    outhtml += "'></div>";
-	                 	}
-	                 outhtml +="</div>";
-	             }
-	             document.getElementById('desktopbigclass').innerHTML=outhtml;
-           }
+var memory = {
+    vars:{
+        arra:new Array("0","1","1","2","2","3","3","4","4","5","5","6","6","7","7","8","8","9","9"),            
+        click : 0,
+        clicked : new Array(0,0),
+        inttime : 0,
+        intval : "none",
+        intcards : new Array("0","0"),
+    },
+    maketable:function(){
+        var outhtml =""; 
+	     for (iy=0;3>iy;iy++){
+	          outhtml += "<div  class='memorycardline'>";
+	          for (ix=1;7>ix;ix++){
+	               outhtml += "<div  class='memorycardhouse' id='memorycardhouse";
+                  outhtml += ((iy*6)+ix).toString();
+                  outhtml += "'></div>";
+              }
+	           outhtml +="</div>";
+	      }
+	      document.getElementById('desktopbigclass').innerHTML=outhtml;
+     }
+
+}
            
            function memorymakebg() {
            	    var outhtml="";
@@ -133,153 +136,64 @@
            
            function memorymakecard(){
                var cser ={ a:0,b:0,ida:"0",idb:"0"};
-//               for (i=1;2>i;i++) {
-//               	  for(ic=1;10>ic;ic){
-
-
-// ?????????? WTF ???????
+               for (ca=1;2>ca;ca++) {
+                    for(cb=1;10>cb;cb++){
 
                         cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[1];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[1]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[2];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[2]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[3];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[3]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[4];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[4]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[5];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[5]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[6];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[6]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[7];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[7]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[8];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[8]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[9];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[9]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[10];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[10]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[11];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[11]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[12];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[12]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[13];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[13]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[14];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[14]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[15];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[15]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[16];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[16]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[17];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[17]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
-                        cser.a=Math.floor((Math.random()*9)+1);
-                        cser.ida=memory.arra[18];
-                        cser.idb=memory.arra[cser.a];
-                        memory.arra[18]=cser.idb;
-                        memory.arra[cser.a]=cser.ida;
+                        cser.ida=memory.vars.arra[cb];
+                        cser.idb=memory.vars.arra[cser.a];
+                        memory.vars.arra[cb]=cser.idb;
+                        memory.vars.arra[cser.a]=cser.ida;
+
                         
-//     ?????????????????? WTF ???????????????????
-//                    }
-//               }
+                    }
+               }
            }
-//           alert(Math.floor((Math.random()*9)+1).toString());
 
            function memoryclick(card) {
-           	   if (memory.intval!=="none"){
-           	   	  clearInterval(memory.intval);
-                    document.getElementById('memorycardhouse'+memory.intcards[0].toString()).innerHTML="";
-                    document.getElementById('memorycardhouse'+memory.intcards[1].toString()).innerHTML="";
-                    memory.intval="none";
-                    memory.inttime=0;
-                    memory.click = 1;           	   
-           	   }else if (2>memory.click){
-                   memory.click++;
+           	   if (memory.vars.intval!=="none"){
+           	   	  clearInterval(memory.vars.intval);
+                    document.getElementById('memorycardhouse'+memory.vars.intcards[0].toString()).innerHTML="";
+                    document.getElementById('memorycardhouse'+memory.vars.intcards[1].toString()).innerHTML="";
+                    memory.vars.intval="none";
+                    memory.vars.inttime=0;
+                    memory.vars.click = 1;           	   
+           	   }else if (2>memory.vars.click){
+                   memory.vars.click++;
                } else {
-                   memory.click = 1;
-                   document.getElementById('memorycardhouse'+memory.clicked[1].toString()).innerHTML="<div  class='memorycardbg' onclick='memoryclick("+memory.clicked[1].toString()+")'></div>";
-                   document.getElementById('memorycardhouse'+memory.clicked[2].toString()).innerHTML="<div  class='memorycardbg' onclick='memoryclick("+memory.clicked[2].toString()+")'></div>";
-                   memory.clicked[1]=0;
-                   memory.clicked[2]=0;
+                   memory.vars.click = 1;
+                   document.getElementById('memorycardhouse'+memory.vars.clicked[1].toString()).innerHTML="<div  class='memorycardbg' onclick='memoryclick("+memory.vars.clicked[1].toString()+")'></div>";
+                   document.getElementById('memorycardhouse'+memory.vars.clicked[2].toString()).innerHTML="<div  class='memorycardbg' onclick='memoryclick("+memory.vars.clicked[2].toString()+")'></div>";
+                   memory.vars.clicked[1]=0;
+                   memory.vars.clicked[2]=0;
                }
-               memory.clicked[memory.click] = card;
-          	   var outhtml = "<div  class='memorycard memorycard"+memory.arra[card].toString()+"'></div>";
+               memory.vars.clicked[memory.vars.click] = card;
+          	   var outhtml = "<div  class='memorycard memorycard"+memory.vars.arra[card].toString()+"'></div>";
 	            document.getElementById('memorycardhouse'+card.toString()).innerHTML=outhtml;
 	            
-	            if(memory.click === 2){
-	               if(memory.arra[memory.clicked[1]] ===memory.arra[memory.clicked[2]]){
-	                  memory.intcards[0]=memory.clicked[1];
-	                  memory.intcards[1]=memory.clicked[2];
-	                  memory.intval=setInterval("memoryremoveint()", 1000);
+	            if(memory.vars.click === 2){
+	               if(memory.vars.arra[memory.vars.clicked[1]] ===memory.vars.arra[memory.vars.clicked[2]]){
+	                  memory.vars.intcards[0]=memory.vars.clicked[1];
+	                  memory.vars.intcards[1]=memory.vars.clicked[2];
+	                  memory.vars.intval=setInterval("memoryremoveint()", 1000);
 	               }
 	            }
            }
 
            function memoryremoveint() {
-                if (memory.inttime>2){
-                    clearInterval(memory.intval);
-                    document.getElementById('memorycardhouse'+memory.intcards[0].toString()).innerHTML="";
-                    document.getElementById('memorycardhouse'+memory.intcards[1].toString()).innerHTML="";
-                    memory.intval="none";
-                    memory.inttime=0;
-                    memory.click = 0;
+                if (memory.vars.inttime>2){
+                    clearInterval(memory.vars.intval);
+                    document.getElementById('memorycardhouse'+memory.vars.intcards[0].toString()).innerHTML="";
+                    document.getElementById('memorycardhouse'+memory.vars.intcards[1].toString()).innerHTML="";
+                    memory.vars.intval="none";
+                    memory.vars.inttime=0;
+                    memory.vars.click = 0;
                 } else {
-                    memory.inttime++;                
+                    memory.vars.inttime++;                
                 }         
            }
            memorymakecard();
-           memorymaketable();
+           memory.maketable();
            memorymakebg();
 
 
